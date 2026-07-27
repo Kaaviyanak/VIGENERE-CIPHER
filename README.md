@@ -1,9 +1,8 @@
-# VIGENERE-CIPHER
-## EX. NO: 4
- 
 
-## IMPLEMETATION OF VIGENERE CIPHER
- 
+# EX. NO: 4 : IMPLEMENTATION OF VIGENERE CIPHER
+## NAME: KAAVIYAN K
+## REGISTER NUMBER: 212224240066
+## DATE:27-07-2026
 
 ## AIM:
 
@@ -20,17 +19,59 @@ alphabet shifted cyclically to the left compared to the previous alphabet, corre
 ## ALGORITHM:
 
 STEP-1: Arrange the alphabets in row and column of a 26*26 matrix.
+
 STEP-2: Circulate the alphabets in each row to position left such that the first letter is attached to last.
+
 STEP-3: Repeat this process for all 26 rows and construct the final key matrix.
+
 STEP-4: The keyword and the plain text is read from the user.
+
 STEP-5: The characters in the keyword are repeated sequentially so as to match with that of the plain text.
+
 STEP-6: Pick the first letter of the plain text and that of the keyword as the row indices and column indices respectively.
+
 STEP-7: The junction character where these two meet forms the cipher character.
+
 STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
-## PROGRAM
+## PROGRAM:
+```
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
-## OUTPUT
+int main(){
+    char t[100], k[50]; int i,j=0;
 
-## RESULT
+    printf("Text: "); fgets(t,100,stdin);
+    printf("Key: "); fgets(k,50,stdin);
+
+    k[strcspn(k,"\n")]=0;
+
+    // Encryption
+    for(i=0;t[i];i++){
+        if(isalpha(t[i])){
+            t[i]=((toupper(t[i])-'A'+toupper(k[j])-'A')%26)+'A';
+            j=(j+1)%strlen(k);
+        }
+    }
+    printf("Enc:%s",t);
+
+    // Decryption
+    j=0;
+    for(i=0;t[i];i++){
+        if(isalpha(t[i])){
+            t[i]=((toupper(t[i])-'A'-(toupper(k[j])-'A')+26)%26)+'A';
+            j=(j+1)%strlen(k);
+        }
+    }
+    printf("\nDec:%s",t);
+}
+```
+## OUTPUT:
+<img width="1256" height="895" alt="image" src="https://github.com/user-attachments/assets/dc052821-e945-4305-951a-5aa780348d51" />
+
+
+## RESULT:
+The program is executed successfully.
